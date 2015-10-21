@@ -5,3 +5,4 @@ data/
 Release/
 Debug/
 *.sdf
+src/atanua.xml
