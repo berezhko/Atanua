@@ -250,6 +250,14 @@ void process_events()
             if (event.key.keysym.sym == SDLK_r &&
                 event.key.keysym.mod & KMOD_CTRL)
                 do_rotate();
+
+            if (event.key.keysym.sym == SDLK_UP &&
+                event.key.keysym.mod & KMOD_CTRL)
+                gZoomFactor *= 1.2;
+            if (event.key.keysym.sym == SDLK_DOWN &&
+                event.key.keysym.mod & KMOD_CTRL)
+                gZoomFactor /= 1.2;
+
             if (event.key.keysym.sym == SDLK_o &&
                 event.key.keysym.mod & KMOD_CTRL)
 			{
