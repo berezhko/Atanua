@@ -251,13 +251,6 @@ void process_events()
                 event.key.keysym.mod & KMOD_CTRL)
                 do_rotate();
 
-            if (event.key.keysym.sym == SDLK_UP &&
-                event.key.keysym.mod & KMOD_CTRL)
-                gZoomFactor *= 1.2;
-            if (event.key.keysym.sym == SDLK_DOWN &&
-                event.key.keysym.mod & KMOD_CTRL)
-                gZoomFactor /= 1.2;
-
             if (event.key.keysym.sym == SDLK_o &&
                 event.key.keysym.mod & KMOD_CTRL)
 			{
@@ -423,6 +416,27 @@ void multiselect_active()
             gMultiSelectWire.push_back(gWire[id]);
             gWire[id]->mMultiSelectState = 1;
         }
+    }
+}
+
+void move_world(int charcode)
+{
+    float step = 3.33333;
+
+    switch (charcode)
+    {
+    case SDLK_LEFT:
+        gWorldOfsX += step;
+        break;
+    case SDLK_RIGHT:
+        gWorldOfsX -= step;
+        break;
+    case SDLK_UP:
+        gWorldOfsY += step;
+        break;
+    case SDLK_DOWN:
+        gWorldOfsY -= step;
+        break;
     }
 }
 
@@ -1109,8 +1123,11 @@ static void draw_screen()
             gUIState.keyentered == SDLK_UP ||
             gUIState.keyentered == SDLK_DOWN)
         {
-            for (i = 0; i < (signed)gMultiSelectChip.size(); i++)
-                move_chip(gMultiSelectChip[i], gUIState.keyentered);
+            if (gUIState.keymod & KMOD_CTRL)
+                move_world(gUIState.keyentered);
+            else
+                for (i = 0; i < (signed)gMultiSelectChip.size(); i++)
+                    move_chip(gMultiSelectChip[i], gUIState.keyentered);
         }
 
         if (gUIState.keyentered == SDLK_DELETE)
@@ -1172,7 +1189,10 @@ static void draw_screen()
             case SDLK_RIGHT:
             case SDLK_UP:
             case SDLK_DOWN:
-                move_chip(c, gUIState.keyentered);
+                if (gUIState.keymod & KMOD_CTRL)
+                    move_world(gUIState.keyentered);
+                else
+                    move_chip(c, gUIState.keyentered);
                 break;
             case SDLK_DELETE:
                 save_undo();
@@ -1200,7 +1220,15 @@ static void draw_screen()
                 break;
             }
         }
+
+        if (!IS_WIRE_ID(gUIState.kbditem) &&
+            !IS_CHIP_ID(gUIState.kbditem) &&
+            !GET_PIN_ID(gUIState.kbditem))
+        {
+            move_world(gUIState.keyentered);
+        }
     }
+
 
     if (gMultiselectDirty)
     {
