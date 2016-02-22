@@ -586,7 +586,7 @@ static void draw_screen()
 		glClearColor(0.8,0.8,0.8,1.0);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-	drawrect(0, 0, gConfig.mToolkitWidth, gScreenHeight, C_MENUBG);
+	//drawrect(0, 0, gConfig.mToolkitWidth, gScreenHeight, C_MENUBG);
 	drawrect(0, 0, gScreenWidth, 40, C_MENUBG);
 
     imgui_prepare();
@@ -702,31 +702,34 @@ static void draw_screen()
 
     if (imgui_button(GEN_ID,fn14,"New\nCtrl-N",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
+        changeFullScreen(0);
         do_resetdialog();
     }
 	xofs += 40;
     if (imgui_button(GEN_ID,fn14,"Load\nCtrl-L",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
+        changeFullScreen(0);
         do_loaddialog();
     }
 	xofs += 40;
     if (imgui_button(GEN_ID,fn14,"Merge\nCtrl-M",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
+        changeFullScreen(0);
         do_loaddialog(1);
     }
 	xofs += 40;
     if (imgui_button(GEN_ID,fn14,"Box\nCtrl-B",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
+        changeFullScreen(0);
         do_loaddialog(2);
     }
 	xofs += 40;
     if (imgui_button(GEN_ID,fn14,"Save\nCtrl-S",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
+        changeFullScreen(0);
         do_savedialog();
     }
-	xofs += 40;
-
-	xofs += 20;
+	xofs += 60;
 
     if (imgui_button(GEN_ID,fn14,"Undo\nCtrl-Z",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
@@ -771,12 +774,14 @@ static void draw_screen()
 	xofs += 40;
     if (imgui_button(GEN_ID,fn14,"PNG it\nCtrl-G",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
+        changeFullScreen(0);
         gSavePNG = 1;
     }
 	xofs += 40;
 
     if (imgui_button(GEN_ID,fn14,"Quit",800-42,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
+        changeFullScreen(0);
         if (okcancel("Are you sure you want to exit?\nAny unsaved changes will be lost."))
 		{
             exit(0);
