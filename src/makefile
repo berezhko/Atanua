@@ -1,7 +1,8 @@
 all: atanua
 
 atanua-cpp-src = \
-core/fileio.cpp \
+./core/fileio.cpp \
+./core/AtanuaConfig.cpp \
 ./core/BoxStitchingInformation.cpp \
 ./chip/and8chip.cpp \
 ./chip/or8chip.cpp \
@@ -95,11 +96,10 @@ core/fileio.cpp \
 ./basecode/toolkit.cpp \
 ./core/wire.cpp \
 ./chip/xorchip.cpp \
-tinyxml_2_5_3/tinyxml/tinystr.cpp \
-tinyxml_2_5_3/tinyxml/tinyxml.cpp \
-tinyxml_2_5_3/tinyxml/tinyxmlerror.cpp \
-tinyxml_2_5_3/tinyxml/tinyxmlparser.cpp \
-./core/AtanuaConfig.cpp
+./tinyxml_2_5_3/tinyxml/tinystr.cpp \
+./tinyxml_2_5_3/tinyxml/tinyxml.cpp \
+./tinyxml_2_5_3/tinyxml/tinyxmlerror.cpp \
+./tinyxml_2_5_3/tinyxml/tinyxmlparser.cpp
 
 
 atanua-c-src = \
@@ -116,7 +116,8 @@ CXX = g++
 CC = gcc
 
 CXXFLAGS = \
--O3 \
+-O0 \
+-g \
 -I/usr/include/c++/4.5 \
 -I/usr/include/c++/4.5/i686-linux-gnu \
 -I/usr/X11R6/include \
