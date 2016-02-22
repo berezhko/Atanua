@@ -86,6 +86,8 @@ int gSavePNG = 0;
 char * gSidebarTooltip = NULL;
 int gSidebarTooltipId = -1;
 
+int MY_FULLSCREEN = 0;
+
 SDL_AudioSpec *gAudioSpec = NULL;
 
 SDL_Cursor *cursor_normal, *cursor_drag, *cursor_scissors;
@@ -97,6 +99,7 @@ float gPlayHead = 0;
 unsigned char *gAudioOut;
 
 void initvideo();
+void changeFullScreen(int);
 
 void handle_key(int keysym, int down)
 {
@@ -250,6 +253,12 @@ void process_events()
             if (event.key.keysym.sym == SDLK_r &&
                 event.key.keysym.mod & KMOD_CTRL)
                 do_rotate();
+
+            if (event.key.keysym.sym == 292)
+                changeFullScreen(1);
+
+            if (event.key.keysym.sym == 293)
+                changeFullScreen(0);
 
             if (event.key.keysym.sym == SDLK_o &&
                 event.key.keysym.mod & KMOD_CTRL)
@@ -1660,6 +1669,24 @@ static void draw_screen()
     SDL_GL_SwapBuffers();
 }
 
+void changeFullScreen(int state)
+{
+    static int flag_fullscreen;
+
+    if (state){
+        if (flag_fullscreen)
+            MY_FULLSCREEN = 0;
+        else
+            MY_FULLSCREEN = SDL_FULLSCREEN;
+        flag_fullscreen ^= 1;
+        initvideo();
+    }else if (flag_fullscreen == 1){
+        MY_FULLSCREEN = 0;
+        flag_fullscreen = 0;
+        initvideo();
+    }
+}
+
 void initvideo()
 {
     const SDL_VideoInfo *info = NULL;
@@ -1675,7 +1702,7 @@ void initvideo()
     }
 
     bpp = info->vfmt->BitsPerPixel;
-    flags = SDL_OPENGL | SDL_RESIZABLE;
+    flags = SDL_OPENGL | SDL_RESIZABLE | MY_FULLSCREEN;
 
     if (SDL_SetVideoMode(gScreenWidth, gScreenHeight, bpp, flags) == 0) 
     {
