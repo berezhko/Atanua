@@ -78,6 +78,8 @@ int gSnap = 1;
 int gLiveWires = 1;
 int gBlackBackground = 1;
 
+float step_move = 4;
+
 int gSelectKeyMask;
 int gCloneKeyMask;
 
@@ -183,6 +185,9 @@ void process_events()
             if (event.key.keysym.sym == SDLK_LALT) gUIState.keymod |= KMOD_LALT;
             if (event.key.keysym.sym == SDLK_RALT) gUIState.keymod |= KMOD_RALT;
 
+            if (event.key.keysym.sym == SDLK_w)
+                step_move = 1;
+
             // Alias for 'del', as accessing it may be difficult on laptops etc.
             if (event.key.keysym.sym == SDLK_d &&
                 event.key.keysym.mod & KMOD_CTRL)
@@ -269,6 +274,9 @@ void process_events()
             if (event.key.keysym.sym == SDLK_g &&
                 event.key.keysym.mod & KMOD_CTRL)
                 do_screengrab();
+
+            if (event.key.keysym.sym == SDLK_w)
+                step_move = 4;
 
             break;
         case SDL_MOUSEMOTION:
@@ -430,8 +438,7 @@ void multiselect_active()
 
 void move_world(int charcode)
 {
-    float step = 3.33333;
-
+    float step = step_move*0.50;
     switch (charcode)
     {
     case SDLK_LEFT:
@@ -1279,21 +1286,6 @@ static void draw_screen()
     glEnd();
     fn.drawstring(TITLE,0.5,0.5,0xff003f00,1);
     fn.drawstring(gConfig.mUserInfo,0.5,1.5,0xff003f00,1);
-    fn.drawstring("http://iki.fi/sol/",0.5,2.5,0xff003f00,0.5);
-
-    if (gZoomFactor > 100)
-    {
-        fn.drawstring("Congrats, you can zoom.",0.57,2.3,0xff003f00,0.05);
-        if (gZoomFactor > 1000)
-        {
-            fn.drawstring("Far enough.",0.63,2.342,0xff003f00,0.005);
-            if (gZoomFactor > 10000)
-            {
-                fn.drawstring("Are we there yet?",0.6515,2.346,0xff003f00,0.0005);
-            }
-        }
-    }
-    
 
     if (gDragMode == DRAGMODE_SELECT)
     {
