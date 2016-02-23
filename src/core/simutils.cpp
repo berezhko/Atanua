@@ -41,6 +41,7 @@ void do_savebinary(File * f);
 
 int gDirtyNets = 0;
 
+void changeFullScreen(int);
 void do_build_nets();
 
 void build_nets()
@@ -575,6 +576,7 @@ void do_redo()
 
 void do_savedialog()
 {
+    changeFullScreen(0);
     FILE * fh = savefiledialog(NULL);
     if (fh)
     {
@@ -588,6 +590,7 @@ void clear_boxcache();
 
 void do_loaddialog(int merge, const char *aFilename)
 {
+    changeFullScreen(0);
 	clear_boxcache();
     FILE *fh = 0;
 	char *boxfn = NULL;
@@ -715,6 +718,7 @@ void do_loaddialog(int merge, const char *aFilename)
 
 void do_resetdialog()
 {
+    changeFullScreen(0);
     save_undo();
     if (okcancel("Are you sure you want to reset?\nAny unsaved changes will be lost."))
 	{

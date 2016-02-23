@@ -702,31 +702,26 @@ static void draw_screen()
 
     if (imgui_button(GEN_ID,fn14,"New\nCtrl-N",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
-        changeFullScreen(0);
         do_resetdialog();
     }
 	xofs += 40;
     if (imgui_button(GEN_ID,fn14,"Load\nCtrl-L",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
-        changeFullScreen(0);
         do_loaddialog();
     }
 	xofs += 40;
     if (imgui_button(GEN_ID,fn14,"Merge\nCtrl-M",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
-        changeFullScreen(0);
         do_loaddialog(1);
     }
 	xofs += 40;
     if (imgui_button(GEN_ID,fn14,"Box\nCtrl-B",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
-        changeFullScreen(0);
         do_loaddialog(2);
     }
 	xofs += 40;
     if (imgui_button(GEN_ID,fn14,"Save\nCtrl-S",xofs,0,40,40,C_WIDGETBG,C_WIDGETTHUMB,C_WIDGETHOT,0xff000000))
     {
-        changeFullScreen(0);
         do_savedialog();
     }
 	xofs += 60;
