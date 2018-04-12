@@ -99,10 +99,13 @@ atanua-cpp-src = \
 ./tinyxml_2_5_3/tinyxml/tinystr.cpp \
 ./tinyxml_2_5_3/tinyxml/tinyxml.cpp \
 ./tinyxml_2_5_3/tinyxml/tinyxmlerror.cpp \
-./tinyxml_2_5_3/tinyxml/tinyxmlparser.cpp \
-./chipverilog/andverilog.cpp \
-./chipverilog/orverilog.cpp \
-./chipverilog/ffverilog.cpp
+./tinyxml_2_5_3/tinyxml/tinyxmlparser.cpp
+
+verilog-v-src = \
+./chipverilog/andverilog.v \
+./chipverilog/orverilog.v \
+./chipverilog/twolatchverilog.v \
+./chipverilog/ffverilog.v
 
 
 atanua-c-src = \
@@ -113,15 +116,9 @@ stb/stb_image.c \
 stb/stb_image_write.c \
 glee/GLee.c
 
-atanua-obj = $(atanua-cpp-src:.cpp=.o) $(atanua-c-src:.c=.o)
-
-verilog-obj = \
-./chipverilog/Vandverilog__ALL.a \
-./chipverilog/Vorverilog__ALL.a \
-./chipverilog/Vffverilog__ALL.a \
-./chipverilog/verilated.o
-#./chipverilog/andverilog.o \
-#./chipverilog/ffverilog.o \
+verilog-cpp-src = $(verilog-v-src:.v=.cpp)
+atanua-obj = $(atanua-cpp-src:.cpp=.o) $(atanua-c-src:.c=.o) $(verilog-cpp-src:.cpp=.o)
+verilog-obj = $(addprefix ./chipverilog/, $(addprefix V, $(notdir $(verilog-v-src:.v=__ALL.a)))) ./chipverilog/verilated.o
 
 CXX = g++
 CC = gcc
@@ -151,4 +148,5 @@ atanua: $(atanua-obj)
 clean:
 	rm $(atanua-obj) atanua
 
-
+test:
+	echo $(verilog-obj)

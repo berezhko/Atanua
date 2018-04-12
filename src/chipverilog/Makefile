@@ -36,29 +36,14 @@ endif
 verilog-v-src = \
 andverilog.v \
 orverilog.v \
+twolatchverilog.v \
 ffverilog.v
 
 verilog-obj = $(verilog-v-src:.v=.o)
 
 all: $(verilog-obj) verilated.o
 
-andverilog.o:
-	$(VERILATOR) --Mdir obj_$(@:.o=) -CFLAGS "-I../../ -I../../include" -cc $(@:.o=.v) -cc $(@:.o=.cpp)
-	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk)
-	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk) $@
-	cp obj_$(@:.o=)/V$(@:.o=)__ALL.a ./
-	cp obj_$(@:.o=)/$@ ./
-	echo $(@:.o=)
-
-orverilog.o:
-	$(VERILATOR) --Mdir obj_$(@:.o=) -CFLAGS "-I../../ -I../../include" -cc $(@:.o=.v) -cc $(@:.o=.cpp)
-	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk)
-	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk) $@
-	cp obj_$(@:.o=)/V$(@:.o=)__ALL.a ./
-	cp obj_$(@:.o=)/$@ ./
-	echo $(@:.o=)
-
-ffverilog.o:
+$(verilog-obj):
 	$(VERILATOR) --Mdir obj_$(@:.o=) -CFLAGS "-I../../ -I../../include" -cc $(@:.o=.v) -cc $(@:.o=.cpp)
 	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk)
 	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk) $@
