@@ -35,6 +35,7 @@ endif
 
 verilog-v-src = \
 andverilog.v \
+orverilog.v \
 ffverilog.v
 
 verilog-obj = $(verilog-v-src:.v=.o)
@@ -42,6 +43,14 @@ verilog-obj = $(verilog-v-src:.v=.o)
 all: $(verilog-obj) verilated.o
 
 andverilog.o:
+	$(VERILATOR) --Mdir obj_$(@:.o=) -CFLAGS "-I../../ -I../../include" -cc $(@:.o=.v) -cc $(@:.o=.cpp)
+	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk)
+	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk) $@
+	cp obj_$(@:.o=)/V$(@:.o=)__ALL.a ./
+	cp obj_$(@:.o=)/$@ ./
+	echo $(@:.o=)
+
+orverilog.o:
 	$(VERILATOR) --Mdir obj_$(@:.o=) -CFLAGS "-I../../ -I../../include" -cc $(@:.o=.v) -cc $(@:.o=.cpp)
 	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk)
 	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk) $@
@@ -64,4 +73,4 @@ verilated.o:
 
 maintainer-copy::
 clean mostlyclean distclean maintainer-clean::
-	-rm -rf obj_andverilog obj_ffverilog *.log *.dmp *.vpd core *ALL.a $(verilog-obj) verilated.*
+	-rm -rf obj_* *.log *.dmp *.vpd core *ALL.a $(verilog-obj) verilated.*

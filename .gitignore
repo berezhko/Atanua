@@ -2,7 +2,8 @@
 tests/
 out/
 data/
-src/chip/obj_dir/
+src/chipverilog/obj_*/
+src/chipverilog/verilated.d
 Release/
 Debug/
 *.sdf

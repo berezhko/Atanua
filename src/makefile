@@ -101,6 +101,7 @@ atanua-cpp-src = \
 ./tinyxml_2_5_3/tinyxml/tinyxmlerror.cpp \
 ./tinyxml_2_5_3/tinyxml/tinyxmlparser.cpp \
 ./chipverilog/andverilog.cpp \
+./chipverilog/orverilog.cpp \
 ./chipverilog/ffverilog.cpp
 
 
@@ -116,6 +117,7 @@ atanua-obj = $(atanua-cpp-src:.cpp=.o) $(atanua-c-src:.c=.o)
 
 verilog-obj = \
 ./chipverilog/Vandverilog__ALL.a \
+./chipverilog/Vorverilog__ALL.a \
 ./chipverilog/Vffverilog__ALL.a \
 ./chipverilog/verilated.o
 #./chipverilog/andverilog.o \
