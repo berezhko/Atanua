@@ -45,9 +45,6 @@ distribution.
 #include "nand8chip.h"
 #include "nor8chip.h"
 #include "andchip.h"
-#include "andverilog.h"
-#include "orverilog.h"
-#include "ffverilog.h"
 #include "orchip.h"
 #include "nandchip.h"
 #include "norchip.h"
@@ -105,6 +102,11 @@ distribution.
 #include "audiochip.h"
 #include "chip27xx.h"
 #include "chip7489.h"
+
+#include "andverilog.h"
+#include "orverilog.h"
+#include "twolatchverilog.h"
+#include "ffverilog.h"
 
 #include "box.h"
 #include "extpin.h"
@@ -237,6 +239,7 @@ static const char *switch_return = "switch ('return')";
 static const char *and_chip  = "logic AND";
 static const char *and_verilog  = "logic AND verilog";
 static const char *or_verilog  = "logic OR verilog";
+static const char *twolatch_verilog  = "logic 2Latch verilog";
 static const char *ff_verilog  = "logic FF verilog";
 static const char *or_chip   = "logic OR";
 static const char *nand_chip = "logic NAND";
@@ -376,6 +379,7 @@ Chip * BaseChipFactory::build(const char *aChipId)
     if (strcmp(and_chip,    aChipId) == 0) return new ANDChip(1);
     if (strcmp(and_verilog, aChipId) == 0) return new ANDVerilog(1);
     if (strcmp(or_verilog, aChipId) == 0) return new ORVerilog(1);
+    if (strcmp(twolatch_verilog, aChipId) == 0) return new TwoLatchVerilog();
     if (strcmp(ff_verilog, aChipId) == 0) return new FFVerilog();
     if (strcmp(or_chip,     aChipId) == 0) return new ORChip(1);
     if (strcmp(nand_chip,   aChipId) == 0) return new NANDChip(1);
@@ -629,6 +633,7 @@ void BaseChipFactory::getSupportedChips(vector<char *> aChipList[5])
 
     aChipList[0].push_back(mystrdup(and_verilog));
     aChipList[0].push_back(mystrdup(or_verilog));
+    aChipList[0].push_back(mystrdup(twolatch_verilog));
     aChipList[0].push_back(mystrdup(ff_verilog));
 
     aChipList[0].push_back(NULL);
