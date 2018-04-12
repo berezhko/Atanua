@@ -2,9 +2,11 @@
 tests/
 out/
 data/
+src/chip/obj_dir/
 Release/
 Debug/
 *.sdf
 *.o
+*.a
 src/atanua.xml
 src/atanua

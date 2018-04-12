@@ -45,6 +45,8 @@ distribution.
 #include "nand8chip.h"
 #include "nor8chip.h"
 #include "andchip.h"
+#include "andverilog.h"
+#include "ffverilog.h"
 #include "orchip.h"
 #include "nandchip.h"
 #include "norchip.h"
@@ -232,6 +234,8 @@ static const char *switch_shift = "switch ('shift')";
 static const char *switch_return = "switch ('return')";
 
 static const char *and_chip  = "logic AND";
+static const char *and_verilog  = "logic AND verilog";
+static const char *ff_verilog  = "logic FF verilog";
 static const char *or_chip   = "logic OR";
 static const char *nand_chip = "logic NAND";
 static const char *nor_chip  = "logic NOR";
@@ -239,6 +243,7 @@ static const char *xor_chip  = "logic XOR";
 static const char *not_chip  = "logic NOT";
 
 static const char *and_chip_fi  = "logic AND (fi)";
+static const char *and_verilog_fi  = "logic AND verilog (fi)";
 static const char *or_chip_fi   = "logic OR (fi)";
 static const char *nand_chip_fi = "logic NAND (fi)";
 static const char *nor_chip_fi  = "logic NOR (fi)";
@@ -367,6 +372,8 @@ Chip * BaseChipFactory::build(const char *aChipId)
     if (strcmp(logic_high_chip, aChipId) == 0) return new StaticLevelChip(1);
 
     if (strcmp(and_chip,    aChipId) == 0) return new ANDChip(1);
+    if (strcmp(and_verilog, aChipId) == 0) return new ANDVerilog(1);
+    if (strcmp(ff_verilog, aChipId) == 0) return new FFVerilog();
     if (strcmp(or_chip,     aChipId) == 0) return new ORChip(1);
     if (strcmp(nand_chip,   aChipId) == 0) return new NANDChip(1);
     if (strcmp(nor_chip,    aChipId) == 0) return new NORChip(1);
@@ -374,6 +381,7 @@ Chip * BaseChipFactory::build(const char *aChipId)
     if (strcmp(not_chip,    aChipId) == 0) return new NOTChip(1);
 
     if (strcmp(and_chip_fi, aChipId) == 0) return new ANDChip(0);
+    if (strcmp(and_verilog_fi, aChipId) == 0) return new ANDVerilog(0);
     if (strcmp(or_chip_fi,  aChipId) == 0) return new ORChip(0);
     if (strcmp(nand_chip_fi,aChipId) == 0) return new NANDChip(0);
     if (strcmp(nor_chip_fi, aChipId) == 0) return new NORChip(0);
@@ -617,6 +625,8 @@ void BaseChipFactory::getSupportedChips(vector<char *> aChipList[5])
     aChipList[4].push_back(NULL);
 
     aChipList[0].push_back(mystrdup(and_chip));
+    aChipList[0].push_back(mystrdup(and_verilog));
+    aChipList[0].push_back(mystrdup(ff_verilog));
     aChipList[0].push_back(mystrdup(or_chip));
     aChipList[0].push_back(mystrdup(nand_chip));
     aChipList[0].push_back(mystrdup(nor_chip));
@@ -626,6 +636,7 @@ void BaseChipFactory::getSupportedChips(vector<char *> aChipList[5])
     aChipList[0].push_back(NULL);
 
     aChipList[0].push_back(mystrdup(and_chip_fi));
+    aChipList[0].push_back(mystrdup(and_verilog_fi));
     aChipList[0].push_back(mystrdup(or_chip_fi));
     aChipList[0].push_back(mystrdup(nand_chip_fi));
     aChipList[0].push_back(mystrdup(nor_chip_fi));

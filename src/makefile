@@ -99,7 +99,9 @@ atanua-cpp-src = \
 ./tinyxml_2_5_3/tinyxml/tinystr.cpp \
 ./tinyxml_2_5_3/tinyxml/tinyxml.cpp \
 ./tinyxml_2_5_3/tinyxml/tinyxmlerror.cpp \
-./tinyxml_2_5_3/tinyxml/tinyxmlparser.cpp
+./tinyxml_2_5_3/tinyxml/tinyxmlparser.cpp \
+./chipverilog/andverilog.cpp \
+./chipverilog/ffverilog.cpp
 
 
 atanua-c-src = \
@@ -112,15 +114,20 @@ glee/GLee.c
 
 atanua-obj = $(atanua-cpp-src:.cpp=.o) $(atanua-c-src:.c=.o)
 
+verilog-obj = \
+./chipverilog/Vandverilog__ALL.a \
+./chipverilog/Vffverilog__ALL.a \
+./chipverilog/verilated.o
+#./chipverilog/andverilog.o \
+#./chipverilog/ffverilog.o \
+
 CXX = g++
 CC = gcc
 
 CXXFLAGS = \
 -O0 \
 -g \
--I/usr/include/c++/4.5 \
--I/usr/include/c++/4.5/i686-linux-gnu \
--I/usr/X11R6/include \
+-I/usr/include/c++/7 \
 -Itinyxml_2_5_3/tinyxml \
 -I/usr/include/gtk-3.0 \
 -I/usr/include/cairo \
@@ -129,8 +136,7 @@ CXXFLAGS = \
 -I/usr/include/pango-1.0 \
 -I/usr/lib/gtk-3.0/include \
 -I/usr/include/atk-1.0 \
--I/usr/lib/i386-linux-gnu/glib-2.0/include \
--I/usr/lib/x86_64-linux-gnu/glib-2.0/include \
+-I/usr/lib64/glib-2.0/include \
 -I/usr/include/gdk-pixbuf-2.0 \
 -Iinclude \
 -I.
@@ -138,7 +144,7 @@ CXXFLAGS = \
 
 
 atanua: $(atanua-obj)
-	$(CXX) `pkg-config --cflags gtk+-3.0` `pkg-config --cflags glib-2.0` -o $@ $(atanua-obj) -L. -lSDLmain -lSDL -lGL -lGLU `pkg-config --libs gtk+-3.0` `pkg-config --libs glib-2.0` $(CXXFLAGS)
+	$(CXX) `pkg-config --cflags gtk+-3.0` `pkg-config --cflags glib-2.0` -o $@ $(atanua-obj) $(verilog-obj) -L. -ldl -lSDLmain -lSDL -lGL -lGLU `pkg-config --libs gtk+-3.0` `pkg-config --libs glib-2.0` $(CXXFLAGS)
 
 clean:
 	rm $(atanua-obj) atanua
