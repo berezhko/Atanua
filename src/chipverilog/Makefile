@@ -37,6 +37,7 @@ verilog-v-src = \
 andverilog.v \
 orverilog.v \
 twolatchverilog.v \
+latchverilog.v \
 ffverilog.v
 
 verilog-obj = $(verilog-v-src:.v=.o)

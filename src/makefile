@@ -105,6 +105,7 @@ verilog-v-src = \
 ./chipverilog/andverilog.v \
 ./chipverilog/orverilog.v \
 ./chipverilog/twolatchverilog.v \
+./chipverilog/latchverilog.v \
 ./chipverilog/ffverilog.v
 
 
