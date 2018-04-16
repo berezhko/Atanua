@@ -5,8 +5,8 @@ module flipflip (data, clk, out);
 
 wire temp;
 
-latch l2(temp, clk, out);
 latch l1(data, ~clk, temp);
+latch l2(temp, clk, out);
 
 endmodule
 

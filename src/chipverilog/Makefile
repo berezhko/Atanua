@@ -33,12 +33,8 @@ export VERILATOR_ROOT
 VERILATOR = $(VERILATOR_ROOT)/bin/verilator
 endif
 
-verilog-v-src = \
-andverilog.v \
-orverilog.v \
-twolatchverilog.v \
-latchverilog.v \
-ffverilog.v
+include verilog-v-src
+verilog-v-src = $(verilog-v-src-list)
 
 verilog-obj = $(verilog-v-src:.v=.o)
 
@@ -48,15 +44,16 @@ $(verilog-obj):
 	$(VERILATOR) --Mdir obj_$(@:.o=) -CFLAGS "-I../../ -I../../include" -cc $(@:.o=.v) -cc $(@:.o=.cpp)
 	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk)
 	$(MAKE) -C obj_$(@:.o=) -f V$(@:.o=.mk) $@
-	cp obj_$(@:.o=)/V$(@:.o=)__ALL.a ./
-	cp obj_$(@:.o=)/$@ ./
+	mkdir -p ./build
+	cp obj_$(@:.o=)/V$(@:.o=)__ALL.a ./build
+	cp obj_$(@:.o=)/$@ ./build
 	echo $(@:.o=)
 
 verilated.o:
-	g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVL_PRINTF=printf -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -faligned-new -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -I../../ -I../../include   -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+	g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVL_PRINTF=printf -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -faligned-new -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -I../../ -I../../include   -c -o build/verilated.o /usr/share/verilator/include/verilated.cpp
 
 ######################################################################
 
 maintainer-copy::
 clean mostlyclean distclean maintainer-clean::
-	-rm -rf obj_* *.log *.dmp *.vpd core *ALL.a $(verilog-obj) verilated.*
+	-rm -rf build obj_* *.log *.dmp *.vpd core

@@ -1,0 +1,7 @@
+verilog-v-src-list = \
+andverilog.v \
+chip7400vlg.v \
+ffverilog.v \
+latchverilog.v \
+orverilog.v \
+twolatchverilog.v
