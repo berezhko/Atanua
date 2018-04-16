@@ -21,14 +21,14 @@ misrepresented as being the original software.
 distribution.
 */
 #include "atanua.h"
-#include "chip7400vlg.h"
-#include "Vchip7400vlg.h"
+#include "chip7408vlg.h"
+#include "Vchip7408vlg.h"
 #include "verilated.h"
 
 
-Chip7400vlg::Chip7400vlg()
+Chip7408vlg::Chip7408vlg()
 {
-    set(0,0,4,2,"Quad 2-input NAND Gate");
+    set(0,0,4,2,"Quad 2-input AND Gate");
     float xpos = 0.15 + 0.54;
     mPin.push_back(&mInputPinA[0]);
     mInputPinA[3].set(xpos, 0, this, "Pin 13:B4"); xpos += 0.54;
@@ -61,16 +61,16 @@ Chip7400vlg::Chip7400vlg()
 
     mTexture = load_texture("data/chip_14pin.png");
 
-    chipImpl = new Vchip7400vlg();
+    chipImpl = new Vchip7408vlg();
 }
 
-void Chip7400vlg::render(int aChipId)
+void Chip7408vlg::render(int aChipId)
 {
     drawtexturedrect(mTexture,mX,mY,mW,mH,0xffffffff);
-    fn.drawstring("7400 VLG",mX+0.6,mY+0.6,0x5fffffff,0.75);
+    fn.drawstring("7408 VLG",mX+0.6,mY+0.6,0x5fffffff,0.75);
 }
 
-void Chip7400vlg::update(float aTick) 
+void Chip7408vlg::update(float aTick) 
 {
     const char invalid = 1;
     const char valid = 0;
@@ -110,7 +110,7 @@ void Chip7400vlg::update(float aTick)
     }
 }
 
-Chip7400vlg::~Chip7400vlg()
+Chip7408vlg::~Chip7408vlg()
 {
     chipImpl->final();
     delete chipImpl;

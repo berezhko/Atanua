@@ -109,6 +109,9 @@ distribution.
 #include "twolatchverilog.h"
 #include "ffverilog.h"
 #include "chip7400vlg.h"
+#include "chip7402vlg.h"
+#include "chip7408vlg.h"
+#include "chip7432vlg.h"
 
 #include "box.h"
 #include "extpin.h"
@@ -347,6 +350,9 @@ static const char *latch_verilog  = "logic Latch verilog";
 static const char *twolatch_verilog  = "logic 2Latch verilog";
 static const char *ff_verilog  = "logic FF verilog";
 static const char *chip7400_vlg  = "7400 verilor";
+static const char *chip7402_vlg  = "7402 verilor";
+static const char *chip7408_vlg  = "7408 verilor";
+static const char *chip7432_vlg  = "7432 verilor";
 
 BaseChipFactory::~BaseChipFactory()
 {
@@ -354,6 +360,16 @@ BaseChipFactory::~BaseChipFactory()
 
 Chip * BaseChipFactory::build(const char *aChipId)
 {
+    if (strcmp(and_verilog,         aChipId) == 0) return new ANDVerilog(1);
+    if (strcmp(or_verilog,          aChipId) == 0) return new ORVerilog(1);
+    if (strcmp(latch_verilog,       aChipId) == 0) return new LatchVerilog();
+    if (strcmp(twolatch_verilog,    aChipId) == 0) return new TwoLatchVerilog();
+    if (strcmp(ff_verilog,          aChipId) == 0) return new FFVerilog();
+    if (strcmp(chip7400_vlg,        aChipId) == 0) return new Chip7400vlg();
+    if (strcmp(chip7402_vlg,        aChipId) == 0) return new Chip7402vlg();
+    if (strcmp(chip7408_vlg,        aChipId) == 0) return new Chip7408vlg();
+    if (strcmp(chip7432_vlg,        aChipId) == 0) return new Chip7432vlg();
+
     if (strcmp(extrapin,    aChipId) == 0) return new ExtraPin();
     if (strcmp(label_5,     aChipId) == 0) return new Label(5);
     if (strcmp(label_3,     aChipId) == 0) return new Label(3);
@@ -382,12 +398,6 @@ Chip * BaseChipFactory::build(const char *aChipId)
     if (strcmp(logic_high_chip, aChipId) == 0) return new StaticLevelChip(1);
 
     if (strcmp(and_chip,    aChipId) == 0) return new ANDChip(1);
-    if (strcmp(and_verilog, aChipId) == 0) return new ANDVerilog(1);
-    if (strcmp(or_verilog, aChipId) == 0) return new ORVerilog(1);
-    if (strcmp(latch_verilog, aChipId) == 0) return new LatchVerilog();
-    if (strcmp(twolatch_verilog, aChipId) == 0) return new TwoLatchVerilog();
-    if (strcmp(ff_verilog, aChipId) == 0) return new FFVerilog();
-    if (strcmp(chip7400_vlg, aChipId) == 0) return new Chip7400vlg();
     if (strcmp(or_chip,     aChipId) == 0) return new ORChip(1);
     if (strcmp(nand_chip,   aChipId) == 0) return new NANDChip(1);
     if (strcmp(nor_chip,    aChipId) == 0) return new NORChip(1);
@@ -644,6 +654,9 @@ void BaseChipFactory::getSupportedChips(vector<char *> aChipList[5])
     aChipList[0].push_back(mystrdup(latch_verilog));
     aChipList[0].push_back(mystrdup(ff_verilog));
     aChipList[0].push_back(mystrdup(chip7400_vlg));
+    aChipList[0].push_back(mystrdup(chip7402_vlg));
+    aChipList[0].push_back(mystrdup(chip7408_vlg));
+    aChipList[0].push_back(mystrdup(chip7432_vlg));
 
     aChipList[0].push_back(NULL);
 

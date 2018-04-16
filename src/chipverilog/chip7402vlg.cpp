@@ -21,14 +21,14 @@ misrepresented as being the original software.
 distribution.
 */
 #include "atanua.h"
-#include "chip7400vlg.h"
-#include "Vchip7400vlg.h"
+#include "chip7402vlg.h"
+#include "Vchip7402vlg.h"
 #include "verilated.h"
 
 
-Chip7400vlg::Chip7400vlg()
+Chip7402vlg::Chip7402vlg()
 {
-    set(0,0,4,2,"Quad 2-input NAND Gate");
+    set(0,0,4,2,"Quad 2-input NOR Gate");
     float xpos = 0.15 + 0.54;
     mPin.push_back(&mInputPinA[0]);
     mInputPinA[3].set(xpos, 0, this, "Pin 13:B4"); xpos += 0.54;
@@ -61,16 +61,16 @@ Chip7400vlg::Chip7400vlg()
 
     mTexture = load_texture("data/chip_14pin.png");
 
-    chipImpl = new Vchip7400vlg();
+    chipImpl = new Vchip7402vlg();
 }
 
-void Chip7400vlg::render(int aChipId)
+void Chip7402vlg::render(int aChipId)
 {
     drawtexturedrect(mTexture,mX,mY,mW,mH,0xffffffff);
-    fn.drawstring("7400 VLG",mX+0.6,mY+0.6,0x5fffffff,0.75);
+    fn.drawstring("7402 VLG",mX+0.6,mY+0.6,0x5fffffff,0.75);
 }
 
-void Chip7400vlg::update(float aTick) 
+void Chip7402vlg::update(float aTick) 
 {
     const char invalid = 1;
     const char valid = 0;
@@ -83,14 +83,10 @@ void Chip7400vlg::update(float aTick)
             mInputPinB[i].mNet == NULL) {
 
             pinstate[i] = invalid;
-//            chipImpl->a |= (1 << i);
-//            chipImpl->b |= (1 << i);
         } else if (mInputPinA[i].mNet->mState == NETSTATE_INVALID ||
                    mInputPinB[i].mNet->mState == NETSTATE_INVALID)
         {
             pinstate[i] = invalid;
-//            chipImpl->a |= (1 << i);
-//            chipImpl->b |= (1 << i);
         } else {
             chipImpl->a |= ((mInputPinA[i].mNet->mState == NETSTATE_HIGH) << i);
             chipImpl->b |= ((mInputPinB[i].mNet->mState == NETSTATE_HIGH) << i);
@@ -110,7 +106,7 @@ void Chip7400vlg::update(float aTick)
     }
 }
 
-Chip7400vlg::~Chip7400vlg()
+Chip7402vlg::~Chip7402vlg()
 {
     chipImpl->final();
     delete chipImpl;
