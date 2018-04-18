@@ -1,6 +1,7 @@
 all: atanua
 
 atanua-cpp-src = \
+./core/checknet.cpp \
 ./core/fileio.cpp \
 ./core/AtanuaConfig.cpp \
 ./core/BoxStitchingInformation.cpp \

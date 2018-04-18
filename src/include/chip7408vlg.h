@@ -35,7 +35,7 @@ class Chip7408vlg : public Chip
     Vchip7408vlg *chipImpl;
 public:
     Chip7408vlg(); // Ctor
-    ~Chip7408vlg(); // DCtor
+    virtual ~Chip7408vlg(); // DCtor
 
     virtual void render(int aChipId);
     virtual void update(float aTick);

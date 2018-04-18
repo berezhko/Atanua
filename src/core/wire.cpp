@@ -24,7 +24,7 @@ distribution.
 
 Wire::Wire() 
 { 
-	  mBox = 0;
+    mBox = 0;
     mFirst = mSecond = 0; 
     mKey = SDL_GetTicks();
     mMultiSelectState = 0;
@@ -32,7 +32,7 @@ Wire::Wire()
 
 Wire::Wire(Pin *aFirst, Pin *aSecond)
 {
-	mBox = 0;
+    mBox = 0;
     mFirst = aFirst;
     mSecond = aSecond;
     mKey = SDL_GetTicks();

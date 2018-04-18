@@ -21,81 +21,98 @@ misrepresented as being the original software.
 distribution.
 */
 #include "atanua.h"
-#include "chip7408vlg.h"
-#include "Vchip7408vlg.h"
-#include "verilated.h"
+#include "chip7421vlg.h"
+#include "Vchip7421vlg.h"
+#include <verilated.h>
+#include <vector>
 
 
-Chip7408vlg::Chip7408vlg()
+Chip7421vlg::Chip7421vlg()
 {
-    set(0,0,4,2,"Quad 2-input AND Gate");
+    set(0,0,4,2,"Two 4-input AND Gate");
     float xpos = 0.15 + 0.54;
-    mPin.push_back(&mInputPinA[0]);
-    mInputPinA[3].set(xpos, 0, this, "Pin 13:B4"); xpos += 0.54;
-    mPin.push_back(&mInputPinB[0]);
-    mInputPinB[3].set(xpos, 0, this, "Pin 12:A4"); xpos += 0.54;
-    mPin.push_back(&mOutputPin[0]);
-    mOutputPin[3].set(xpos, 0, this, "Pin 11:Y4"); xpos += 0.54;
+    mPin.push_back(&mInputPinD[1]);
+    mInputPinD[1].set(xpos, 0, this, "Pin 13:D2"); xpos += 0.54;
+
+    mPin.push_back(&mInputPinC[1]);
+    mInputPinC[1].set(xpos, 0, this, "Pin 12:C2"); xpos += 0.54;
+
+    xpos += 0.54;
+
+    mPin.push_back(&mInputPinB[1]);
+    mInputPinB[1].set(xpos, 0, this, "Pin 10:B2"); xpos += 0.54;
 
     mPin.push_back(&mInputPinA[1]);
-    mInputPinA[2].set(xpos, 0, this, "Pin 10:B3"); xpos += 0.54;
-    mPin.push_back(&mInputPinB[1]);
-    mInputPinB[2].set(xpos, 0, this, "Pin 9:A3"); xpos += 0.54;
+    mInputPinA[1].set(xpos, 0, this, "Pin 9:A2"); xpos += 0.54;
+
     mPin.push_back(&mOutputPin[1]);
-    mOutputPin[2].set(xpos, 0, this, "Pin 8:Y3"); xpos += 0.54;
+    mOutputPin[1].set(xpos, 0, this, "Pin 8:Y2"); xpos += 0.54;
 
     xpos = 0.15;
-    mPin.push_back(&mInputPinA[2]);
+    mPin.push_back(&mInputPinA[0]);
     mInputPinA[0].set(xpos, 1.5, this, "Pin 1:A1"); xpos += 0.54;
-    mPin.push_back(&mInputPinB[2]);
-    mInputPinB[0].set(xpos, 1.5, this, "Pin 2:B1"); xpos += 0.54;
-    mPin.push_back(&mOutputPin[2]);
-    mOutputPin[0].set(xpos, 1.5, this, "Pin 3:Y1"); xpos += 0.54;
 
-    mPin.push_back(&mInputPinA[3]);
-    mInputPinA[1].set(xpos, 1.5, this, "Pin 4:A2"); xpos += 0.54;
-    mPin.push_back(&mInputPinB[3]);
-    mInputPinB[1].set(xpos, 1.5, this, "Pin 5:B2"); xpos += 0.54;
-    mPin.push_back(&mOutputPin[3]);
-    mOutputPin[1].set(xpos, 1.5, this, "Pin 6:Y2"); xpos += 0.54;
+    mPin.push_back(&mInputPinB[0]);
+    mInputPinB[0].set(xpos, 1.5, this, "Pin 2:B1"); xpos += 0.54;
+
+    xpos += 0.54;
+
+    mPin.push_back(&mInputPinC[0]);
+    mInputPinC[0].set(xpos, 1.5, this, "Pin 4:C1"); xpos += 0.54;
+
+    mPin.push_back(&mInputPinD[0]);
+    mInputPinD[0].set(xpos, 1.5, this, "Pin 5:D1"); xpos += 0.54;
+
+    mPin.push_back(&mOutputPin[0]);
+    mOutputPin[0].set(xpos, 1.5, this, "Pin 6:Y1"); xpos += 0.54;
 
     mTexture = load_texture("data/chip_14pin.png");
 
-    chipImpl = new Vchip7408vlg();
+    chipImpl = new Vchip7421vlg();
 }
 
-void Chip7408vlg::render(int aChipId)
+void Chip7421vlg::render(int aChipId)
 {
     drawtexturedrect(mTexture,mX,mY,mW,mH,0xffffffff);
-    fn.drawstring("7408 VLG",mX+0.6,mY+0.6,0x5fffffff,0.75);
+    fn.drawstring("7421 VLG",mX+0.6,mY+0.6,0x5fffffff,0.75);
 }
 
-void Chip7408vlg::update(float aTick) 
+void Chip7421vlg::update(float aTick) 
 {
     const char invalid = 1;
     const char valid = 0;
-    char pinstate[] = {valid, valid, valid, valid};
+    vector<char> pinstate;
 
     chipImpl->a = 0;
     chipImpl->b = 0;
-    for (int i = 0; i < 4; i++) {
+    chipImpl->c = 0;
+    chipImpl->d = 0;
+    for (int i = 0; i < 2; i++) {
         if (mInputPinA[i].mNet == NULL ||
-            mInputPinB[i].mNet == NULL) {
+            mInputPinB[i].mNet == NULL ||
+            mInputPinC[i].mNet == NULL ||
+            mInputPinD[i].mNet == NULL) {
 
-            pinstate[i] = invalid;
+            pinstate.push_back(invalid);
         } else if (mInputPinA[i].mNet->mState == NETSTATE_INVALID ||
-                   mInputPinB[i].mNet->mState == NETSTATE_INVALID) {
+                   mInputPinB[i].mNet->mState == NETSTATE_INVALID ||
+                   mInputPinC[i].mNet->mState == NETSTATE_INVALID ||
+                   mInputPinD[i].mNet->mState == NETSTATE_INVALID) {
 
-            pinstate[i] = invalid;
+            pinstate.push_back(invalid);
         } else {
             chipImpl->a |= ((mInputPinA[i].mNet->mState == NETSTATE_HIGH) << i);
             chipImpl->b |= ((mInputPinB[i].mNet->mState == NETSTATE_HIGH) << i);
+            chipImpl->c |= ((mInputPinC[i].mNet->mState == NETSTATE_HIGH) << i);
+            chipImpl->d |= ((mInputPinD[i].mNet->mState == NETSTATE_HIGH) << i);
+
+            pinstate.push_back(valid);
         }
     }
 
     chipImpl->eval();
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 2; i++) {
         int mask = 0;
         mask |= (1 << i);
 
@@ -106,7 +123,7 @@ void Chip7408vlg::update(float aTick)
     }
 }
 
-Chip7408vlg::~Chip7408vlg()
+Chip7421vlg::~Chip7421vlg()
 {
     chipImpl->final();
     delete chipImpl;

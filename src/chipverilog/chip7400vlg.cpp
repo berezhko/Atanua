@@ -83,14 +83,10 @@ void Chip7400vlg::update(float aTick)
             mInputPinB[i].mNet == NULL) {
 
             pinstate[i] = invalid;
-//            chipImpl->a |= (1 << i);
-//            chipImpl->b |= (1 << i);
         } else if (mInputPinA[i].mNet->mState == NETSTATE_INVALID ||
-                   mInputPinB[i].mNet->mState == NETSTATE_INVALID)
-        {
+                   mInputPinB[i].mNet->mState == NETSTATE_INVALID) {
+
             pinstate[i] = invalid;
-//            chipImpl->a |= (1 << i);
-//            chipImpl->b |= (1 << i);
         } else {
             chipImpl->a |= ((mInputPinA[i].mNet->mState == NETSTATE_HIGH) << i);
             chipImpl->b |= ((mInputPinB[i].mNet->mState == NETSTATE_HIGH) << i);
@@ -100,8 +96,7 @@ void Chip7400vlg::update(float aTick)
     chipImpl->eval();
 
     for (int i = 0; i < 4; i++) {
-        int mask = 0;
-        mask |= (1 << i);
+        int mask = (1 << i);
 
         if (pinstate[i] == valid)
             mOutputPin[i].setState((chipImpl->out & mask) ? PINSTATE_WRITE_HIGH : PINSTATE_WRITE_LOW);

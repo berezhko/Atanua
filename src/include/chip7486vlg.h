@@ -20,22 +20,22 @@ misrepresented as being the original software.
 3. This notice may not be removed or altered from any source
 distribution.
 */
-#ifndef CHIP7432VLG_H
-#define CHIP7432VLG_H
+#ifndef CHIP7486VLG_H
+#define CHIP7486VLG_H
 
-class Vchip7432vlg;
+class Vchip7486vlg;
 
-class Chip7432vlg : public Chip
+class Chip7486vlg : public Chip
 {
     Pin mInputPinA[4]; // Input pin A for this chip
     Pin mInputPinB[4]; // Input pin B for this chip
     Pin mOutputPin[4]; // Output pin for this chip
     int mTexture;
 
-    Vchip7432vlg *chipImpl;
+    Vchip7486vlg *chipImpl;
 public:
-    Chip7432vlg(); // Ctor
-    virtual ~Chip7432vlg(); // DCtor
+    Chip7486vlg(); // Ctor
+    virtual ~Chip7486vlg(); // DCtor
 
     virtual void render(int aChipId);
     virtual void update(float aTick);

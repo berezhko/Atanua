@@ -2,8 +2,14 @@ verilog-v-src-list = \
 andverilog.v \
 chip7400vlg.v \
 chip7402vlg.v \
+chip7404vlg.v \
 chip7408vlg.v \
+chip7411vlg.v \
+chip7421vlg.v \
 chip7432vlg.v \
+chip7474vlg.v \
+chip7486vlg.v \
+chip74153vlg.v \
 ffverilog.v \
 latchverilog.v \
 orverilog.v \

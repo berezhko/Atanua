@@ -52,6 +52,8 @@ $(verilog-obj):
 verilated.o:
 	g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVL_PRINTF=printf -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -faligned-new -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -I../../ -I../../include   -c -o build/verilated.o /usr/share/verilator/include/verilated.cpp
 
+clear_obj_dir:
+	-rm -rf obj_*
 ######################################################################
 
 maintainer-copy::
