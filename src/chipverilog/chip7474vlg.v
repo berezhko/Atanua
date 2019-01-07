@@ -22,7 +22,7 @@ module flipflop(d, clk, pre, clr, q, notq);
     output reg notq;
 
 always_ff @(posedge clk, negedge clr)
-    if(~clr) begin
+    if (~clr) begin
         q <= 0;
         notq <= 1;
     end else if (~pre) begin

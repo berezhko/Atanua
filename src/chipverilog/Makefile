@@ -27,7 +27,7 @@ endif
 # package inatall, and verilator is in your path. Otherwise find the
 # binary relative to $VERILATOR_ROOT (such as when inside the git sources).
 ifeq ($(VERILATOR_ROOT),)
-VERILATOR = verilator
+VERILATOR = verilator_bin
 else
 export VERILATOR_ROOT
 VERILATOR = $(VERILATOR_ROOT)/bin/verilator

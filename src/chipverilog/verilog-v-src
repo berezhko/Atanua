@@ -10,6 +10,7 @@ chip7432vlg.v \
 chip7474vlg.v \
 chip7486vlg.v \
 chip74153vlg.v \
+chip74377vlg.v \
 ffverilog.v \
 latchverilog.v \
 orverilog.v \

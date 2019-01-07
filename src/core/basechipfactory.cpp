@@ -118,6 +118,7 @@ distribution.
 #include "chip7474vlg.h"
 #include "chip7486vlg.h"
 #include "chip74153vlg.h"
+#include "chip74377vlg.h"
 
 #include "box.h"
 #include "extpin.h"
@@ -365,6 +366,7 @@ static const char *chip7432_vlg  = "7432 OR";
 static const char *chip7474_vlg  = "7474 Latch";
 static const char *chip7486_vlg  = "7486 XOR";
 static const char *chip74153_vlg  = "74153 2MUX4:1";
+static const char *chip74377_vlg  = "74377 8bitRegister";
 
 BaseChipFactory::~BaseChipFactory()
 {
@@ -387,6 +389,7 @@ Chip * BaseChipFactory::build(const char *aChipId)
     if (strcmp(chip7474_vlg,        aChipId) == 0) return new Chip7474vlg();
     if (strcmp(chip7486_vlg,        aChipId) == 0) return new Chip7486vlg();
     if (strcmp(chip74153_vlg,       aChipId) == 0) return new Chip74153vlg();
+    if (strcmp(chip74377_vlg,       aChipId) == 0) return new Chip74377vlg();
 
     if (strcmp(extrapin,    aChipId) == 0) return new ExtraPin();
     if (strcmp(label_5,     aChipId) == 0) return new Label(5);
@@ -682,6 +685,7 @@ void BaseChipFactory::getSupportedChips(vector<char *> aChipList[5])
     aChipList[1].push_back(mystrdup(chip7474_vlg));
     aChipList[1].push_back(mystrdup(chip7486_vlg));
     aChipList[1].push_back(mystrdup(chip74153_vlg));
+    aChipList[1].push_back(mystrdup(chip74377_vlg));
     aChipList[1].push_back(NULL);
 
     aChipList[0].push_back(NULL);
