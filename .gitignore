@@ -4,6 +4,7 @@ out/
 data/
 src/chipverilog/obj_*/
 src/chipverilog/verilated.d
+src/.build
 Release/
 Debug/
 *.sdf

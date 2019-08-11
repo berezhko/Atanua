@@ -35,7 +35,6 @@ target_include_directories(Atanua PUBLIC
     ./
 )
 
-target_link_libraries(Atanua 8051 basecode core glee stb chip tinyxml
-    verilator chipverilog
-    PkgConfig::SDL PkgConfig::GLU PkgConfig::GTK
+target_link_libraries(Atanua PkgConfig::SDL PkgConfig::GLU PkgConfig::GTK
+    verilator chipverilog 8051 basecode core glee stb chip tinyxml
 )

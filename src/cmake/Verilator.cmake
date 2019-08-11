@@ -29,12 +29,7 @@ include_directories(SYSTEM ${VERILATOR_INCLUDE})
 endmacro()
 
 macro(verilator_create_sources verilog_chip)
-    string(
-        REGEX REPLACE "${CMAKE_SOURCE_DIR}/" ""
-        VERILOG_OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}
-    )
-
-    set(VERILOG_OUTPUT_DIR "${CMAKE_SOURCE_DIR}/${VERILOG_OUTPUT}/src")
+    set(VERILOG_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/src")
 
     set(VERILATOR_INCS "")
     set(VERILATOR_ARGS "")
@@ -55,7 +50,7 @@ macro(verilator_create_sources verilog_chip)
     foreach(source ".cpp" "__Syms.cpp" ".h" "__Syms.h")
         set(verilog_sources  ${verilog_sources} "V${verilog_chip}${source}")
     endforeach()
-    set(verilog_sources  ${verilog_sources} "../${verilog_chip}.cpp")
+    #set(verilog_sources  ${verilog_sources} "../${verilog_chip}.cpp")
 
     set(VERILOG_OUTPUT_SOURCES "")
     foreach(source ${verilog_sources})
@@ -83,6 +78,7 @@ macro(verilator_create_module verilog_module verilog_chips)
     foreach(chip ${verilog_chips})
         verilator_create_sources(${chip})
         set(VOS ${VOS} ${VERILOG_OUTPUT_SOURCES})
+        set(VOS ${VOS} "${chip}.cpp")
     endforeach()
 
     add_library(${verilog_module} SHARED ${VOS})
