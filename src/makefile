@@ -125,7 +125,7 @@ CC = gcc
 CXXFLAGS = \
 -O0 \
 -g \
--I/usr/include/c++/7 \
+-I/usr/include/c++/8 \
 -Itinyxml_2_5_3/tinyxml \
 -I/usr/include/gtk-3.0 \
 -I/usr/include/cairo \
@@ -142,7 +142,7 @@ CXXFLAGS = \
 
 
 atanua: $(atanua-obj)
-	$(CXX) `pkg-config --cflags gtk+-3.0` `pkg-config --cflags glib-2.0` -o $@ $(atanua-obj) $(verilog-obj) -L. -ldl -lSDLmain -lSDL -lGL -lGLU `pkg-config --libs gtk+-3.0` `pkg-config --libs glib-2.0` $(CXXFLAGS)
+	$(CXX) `pkg-config --cflags gtk+-3.0` `pkg-config --cflags glib-2.0` -o $@ $(atanua-obj) $(verilog-obj) -L. -ldl -lSDL -lGL -lGLU `pkg-config --libs gtk+-3.0` `pkg-config --libs glib-2.0` $(CXXFLAGS)
 
 clean:
 	rm $(atanua-obj) atanua

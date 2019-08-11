@@ -59,8 +59,8 @@
 #elif defined(__APPLE__) || defined(__APPLE_CC__)
 	#include <OpenGL/gl.h>
 #else // GLX
-	#define __glext_h_  /* prevent glext.h from being included  */
-	#define __glxext_h_ /* prevent glxext.h from being included */
+	#define __gl_glext_h_  /* prevent glext.h from being included  */
+	#define __glx_glxext_h_ /* prevent glxext.h from being included */
 	#define GLX_GLXEXT_PROTOTYPES
 	#include <GL/gl.h>
 	#include <GL/glx.h>

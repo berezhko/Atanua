@@ -94,6 +94,7 @@ distribution.
 #include "angelcodefont.h"
 #include "fileutils.h"
 
+
 #ifdef _MSC_VER
 #pragma warning(disable:4244) 
 #pragma warning(disable:4305) 
