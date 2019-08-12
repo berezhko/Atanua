@@ -4,7 +4,7 @@ macro(verilator_add)
         HINTS /usr/share
     )
 
-include_directories(SYSTEM ${VERILATOR_INCLUDE})
+    include_directories(SYSTEM ${VERILATOR_INCLUDE})
 
     set(VERILATOR_SOURCE_LIST
         verilated.cpp

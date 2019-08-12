@@ -1,8 +1,6 @@
 add_library(core SHARED "")
 
-#find_package(PkgConfig REQUIRED)
-
-#pkg_search_module( GTK REQUIRED gtk+-3.0 IMPORTED_TARGET)
+#target_compile_options(core PRIVATE "-DGTK_DISABLE_DEPRECATED")
 
 target_sources(core
   PRIVATE

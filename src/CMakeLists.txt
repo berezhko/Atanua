@@ -12,7 +12,7 @@ set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/modules)
 
 find_package(PkgConfig REQUIRED)
 
-pkg_search_module(GTK REQUIRED gtk+-3.0 IMPORTED_TARGET)
+pkg_search_module(GTK REQUIRED gtk+-2.0 IMPORTED_TARGET)
 pkg_search_module(SDL REQUIRED sdl IMPORTED_TARGET)
 pkg_search_module(GLU REQUIRED glu IMPORTED_TARGET)
 

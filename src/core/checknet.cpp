@@ -7,6 +7,7 @@ CheckNet::CheckNet() {
 int CheckNet::add(Net *n)
 {
     nets.push_back(n);
+    return 0;
 }
 
 bool CheckNet::operator()()
