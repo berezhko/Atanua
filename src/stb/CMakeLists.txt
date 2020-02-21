@@ -1,6 +1,6 @@
 enable_language(C)
 
-add_library(stb SHARED "")
+add_library(stb STATIC "")
 
 target_sources(stb
   PRIVATE

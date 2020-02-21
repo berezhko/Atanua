@@ -231,7 +231,7 @@ FILE * savefiledialog(const char *title)
     return f;
 }
 
-int okcancel(const char *prompt)
+long okcancel(const char *prompt)
 {
     SDL_SysWMinfo wmInfo;
     memset(&wmInfo, 0, sizeof(wmInfo));
@@ -309,7 +309,7 @@ FILE * savefiledialog(const char *title)
   return NULL;
 }
 
-int okcancel(const char *prompt)
+long okcancel(const char *prompt)
 {
   return showWarning(prompt);
 }
@@ -449,7 +449,7 @@ FILE * savefiledialog(const char* title)
     return f;
 }
 
-int okcancel(const char *prompt)
+long okcancel(const char *prompt)
 {
   unsigned char temp[257];
   temp[0] = 0;
@@ -617,7 +617,7 @@ FILE * savefiledialog(const char *title)
   return f;
 }
 
-int okcancel(const char *prompt)
+long okcancel(const char *prompt)
 {
 	selected = false;
 	GtkWidget *dialog;

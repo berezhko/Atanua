@@ -1,6 +1,6 @@
 enable_language(C)
 
-add_library(glee SHARED "")
+add_library(glee STATIC "")
 
 target_sources(glee
   PRIVATE

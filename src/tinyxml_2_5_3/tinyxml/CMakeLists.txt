@@ -1,4 +1,4 @@
-add_library(tinyxml SHARED "")
+add_library(tinyxml STATIC "")
 
 target_sources(tinyxml
   PRIVATE

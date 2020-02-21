@@ -158,7 +158,7 @@ extern BoxStitchingInformation * do_preparse_box(const char *aFname);
 
 extern FILE * openfiledialog(const char *aPrompt);
 extern FILE * savefiledialog(const char *aPrompt);
-extern int okcancel(const char *prompt);
+extern long okcancel(const char *prompt);
 extern void gotoappdirectory(int parc, char ** pars);
 extern DLLHANDLETYPE opendll(const char *dllfilename);
 extern void *getdllproc(DLLHANDLETYPE dllhandle, const char *procname);

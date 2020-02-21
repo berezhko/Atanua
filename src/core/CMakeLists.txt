@@ -24,8 +24,5 @@ target_sources(core
 target_include_directories(core
   PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
-    ${CMAKE_CURRENT_LIST_DIR}/..
-    ${CMAKE_CURRENT_LIST_DIR}/../include
-    ${CMAKE_CURRENT_LIST_DIR}/../tinyxml
     ${GTK_INCLUDE_DIRS}
   )

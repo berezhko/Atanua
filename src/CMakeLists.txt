@@ -19,6 +19,13 @@ pkg_search_module(GLU REQUIRED glu IMPORTED_TARGET)
 include(cmake/Verilator.cmake)
 verilator_add()
 
+include_directories(
+  ./include
+  ./tinyxml
+  ./stb
+  ./
+)
+
 add_subdirectory(8051)
 add_subdirectory(basecode)
 add_subdirectory(core)
@@ -29,11 +36,6 @@ add_subdirectory(tinyxml)
 add_subdirectory(chipverilog)
 
 add_executable(Atanua core/main.cpp)
-
-target_include_directories(Atanua PUBLIC
-    ./include
-    ./
-)
 
 target_link_libraries(Atanua PkgConfig::SDL PkgConfig::GLU PkgConfig::GTK
     verilator chipverilog 8051 basecode core glee stb chip tinyxml

@@ -1,4 +1,4 @@
-add_library(basecode SHARED "")
+add_library(basecode STATIC "")
 
 target_sources(basecode
   PRIVATE
@@ -10,6 +10,4 @@ target_sources(basecode
 target_include_directories(basecode
   PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
-    ${CMAKE_CURRENT_LIST_DIR}/..
-    ${CMAKE_CURRENT_LIST_DIR}/../include
   )

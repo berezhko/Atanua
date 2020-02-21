@@ -84,6 +84,4 @@ xorchip.cpp
 target_include_directories(chip
   PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
-    ${CMAKE_CURRENT_LIST_DIR}/..
-    ${CMAKE_CURRENT_LIST_DIR}/../include
   )

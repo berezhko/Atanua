@@ -15,6 +15,7 @@ set(VERILOG_CHIPS
     latchverilog
     orverilog
     twolatchverilog
+    tristate_buffer
 )
 
 verilator_create_module(chipverilog "${VERILOG_CHIPS}")
