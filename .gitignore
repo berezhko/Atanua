@@ -3,6 +3,7 @@ tests/
 out/
 data/
 src/chipverilog/obj_*/
+src/schoolmips
 src/chipverilog/verilated.d
 src/.build
 Release/
