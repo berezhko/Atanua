@@ -33,11 +33,11 @@ TristateBuffer::TristateBuffer()
     mInputPin.set(0, 0.75, this, "Input");
 
     mPin.push_back(&mEnablePin);
-    mEnablePin.set(2, 0.75, this, "Enable");
+    mEnablePin.set(1.75, 0.0, this, "Enable");
  
     mPin.push_back(&mOutputPin);
     mOutputPin.set(3.5, 0.75, this, "Output");
-    mTexture = load_texture("data/tsb.png");
+    mTexture = load_texture("data/tsb_us.png");
 
 	mInputPin.mReadOnly = 1;
     mTsb = new Vtristate_buffer("TSB");
