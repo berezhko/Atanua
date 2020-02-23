@@ -10,7 +10,7 @@ int CheckNet::add(Net *n)
     return 0;
 }
 
-bool CheckNet::operator()()
+CheckNet::State CheckNet::operator()()
 {
     if (nets.empty())
         return invalid;

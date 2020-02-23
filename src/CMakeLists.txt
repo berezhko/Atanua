@@ -34,9 +34,10 @@ add_subdirectory(stb)
 add_subdirectory(chip)
 add_subdirectory(tinyxml)
 add_subdirectory(chipverilog)
+add_subdirectory(schoolmips)
 
 add_executable(Atanua core/main.cpp)
 
 target_link_libraries(Atanua PkgConfig::SDL PkgConfig::GLU PkgConfig::GTK
-    verilator chipverilog 8051 basecode core glee stb chip tinyxml
+    verilator chipverilog schoolmips 8051 basecode core glee stb chip tinyxml
 )
