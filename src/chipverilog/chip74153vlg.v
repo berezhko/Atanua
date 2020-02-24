@@ -2,7 +2,7 @@ module twoMux4_1 (
     input [3:0] d[0:1],
     input [1:0] s,
     input [1:0] en,
-    output reg [1:0] y
+    output [1:0] y
 );
 
 mux4_1 m1(d[0], s, en[0], y[0]);

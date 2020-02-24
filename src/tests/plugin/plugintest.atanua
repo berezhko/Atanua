@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<Atanua Version="Atanua 0.8.080213 (debug)" ChipCount="8" WireCount="7" key="23945" scale="16">
+    <Chip Name="Clock 2Hz" xpos="360448" ypos="655360" rot="0" key="32556" />
+    <Chip Name="LED (green)" xpos="983040" ypos="622592" rot="0" key="25453" />
+    <Chip Name="button (&apos;1&apos;)" xpos="655360" ypos="327680" rot="0" key="2072" />
+    <Chip Name="plugin test" xpos="655360" ypos="753664" rot="0" key="15352" />
+    <Chip Name="Connection Pin" xpos="983040" ypos="786432" rot="0" key="61568" />
+    <Chip Name="Connection Pin" xpos="786432" ypos="786432" rot="0" key="37310" />
+    <Chip Name="Connection Pin" xpos="393216" ypos="786432" rot="0" key="47532" />
+    <Chip Name="Connection Pin" xpos="589824" ypos="786432" rot="0" key="45114" />
+    <Wire chip1="3" pad1="0" chip2="2" pad2="0" key="10091" />
+    <Wire chip1="3" pad1="1" chip2="7" pad2="0" key="55448" />
+    <Wire chip1="3" pad1="2" chip2="5" pad2="0" key="53330" />
+    <Wire chip1="4" pad1="0" chip2="1" pad2="0" key="61568" />
+    <Wire chip1="5" pad1="0" chip2="4" pad2="0" key="37310" />
+    <Wire chip1="6" pad1="0" chip2="0" pad2="0" key="47532" />
+    <Wire chip1="7" pad1="0" chip2="6" pad2="0" key="45114" />
+</Atanua>

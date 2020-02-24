@@ -79,7 +79,7 @@ void Chip74153vlg::render(int aChipId)
 
 void Chip74153vlg::update(float aTick) 
 {
-    vector<bool> pinstate;
+    vector<CheckNet::State> pinstate;
 
     chipImpl->d[0] = 0;
     chipImpl->d[1] = 0;
@@ -95,18 +95,15 @@ void Chip74153vlg::update(float aTick)
     check1.add(mInputPinS[0].mNet);
     check1.add(mInputPinS[1].mNet);
 
-    if (check1() == CheckNet::valid) {
-        pinstate.push_back(CheckNet::valid);
-
+    pinstate.push_back(check1());
+    if (pinstate.back() == CheckNet::valid) {
+        chipImpl->en |= ((mInputPinG1.mNet->mState == NETSTATE_HIGH) << 0);
         for (int i = 0; i < 4; i++) {
             chipImpl->d[0] |= ((mInputPinD1[i].mNet->mState == NETSTATE_HIGH) << i);
         }
-        chipImpl->en |= ((mInputPinG1.mNet->mState == NETSTATE_HIGH) << 0);
         for (int i = 0; i < 2; i++) {
             chipImpl->s |= ((mInputPinS[i].mNet->mState == NETSTATE_HIGH) << i);
         }
-    } else {
-        pinstate.push_back(CheckNet::invalid);
     }
 
     CheckNet check2;
@@ -118,30 +115,27 @@ void Chip74153vlg::update(float aTick)
     check2.add(mInputPinS[0].mNet);
     check2.add(mInputPinS[1].mNet);
 
-    if (check2() == CheckNet::valid) {
-        pinstate.push_back(CheckNet::valid);
-
+    pinstate.push_back(check2());
+    if (pinstate.back() == CheckNet::valid) {
+        chipImpl->en |= ((mInputPinG2.mNet->mState == NETSTATE_HIGH) << 1);
         for (int i = 0; i < 4; i++) {
             chipImpl->d[1] |= ((mInputPinD2[i].mNet->mState == NETSTATE_HIGH) << i);
         }
-        chipImpl->en |= ((mInputPinG2.mNet->mState == NETSTATE_HIGH) << 1);
         for (int i = 0; i < 2; i++) {
             chipImpl->s |= ((mInputPinS[i].mNet->mState == NETSTATE_HIGH) << i);
         }
-    } else {
-        pinstate.push_back(CheckNet::invalid);
     }
-
 
     chipImpl->eval();
 
     for (int i = 0; i < 2; i++) {
         int mask = (1 << i);
+        int aState = gConfig.mPropagateInvalidState;
 
-        if (pinstate[i] == CheckNet::valid)
-            mOutputPinY[i].setState((chipImpl->y & mask) ? PINSTATE_WRITE_HIGH : PINSTATE_WRITE_LOW);
-        else
-            mOutputPinY[i].setState(gConfig.mPropagateInvalidState);
+        if (pinstate[i] == CheckNet::valid) {
+            aState = (chipImpl->y & mask) ? PINSTATE_WRITE_HIGH : PINSTATE_WRITE_LOW;
+        }
+        mOutputPinY[i].setState(aState);
     }
 }
 

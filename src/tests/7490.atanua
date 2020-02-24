@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<Atanua Version="Atanua 0.5.080127" ChipCount="19" WireCount="24">
+    <Chip Name="7490" xpos="939524096" ypos="637534208" />
+    <Chip Name="Connection Pin" xpos="989855744" ypos="746586112" />
+    <Chip Name="Connection Pin" xpos="981467136" ypos="746586112" />
+    <Chip Name="Connection Pin" xpos="956301312" ypos="746586112" />
+    <Chip Name="Connection Pin" xpos="947912704" ypos="746586112" />
+    <Chip Name="button (&apos;z&apos;)" xpos="872415232" ypos="713031680" />
+    <Chip Name="button (&apos;x&apos;)" xpos="1065353216" ypos="713031680" />
+    <Chip Name="Connection Pin" xpos="880803840" ypos="746586112" />
+    <Chip Name="Connection Pin" xpos="1073741824" ypos="746586112" />
+    <Chip Name="Connection Pin" xpos="956301312" ypos="587202560" />
+    <Chip Name="Connection Pin" xpos="905969664" ypos="587202560" />
+    <Chip Name="Connection Pin" xpos="905969664" ypos="671088640" />
+    <Chip Name="Connection Pin" xpos="931135488" ypos="671088640" />
+    <Chip Name="Clock 1Hz" xpos="847249408" ypos="536870912" />
+    <Chip Name="LogicProbe" xpos="1098907648" ypos="494927872" />
+    <Chip Name="Connection Pin" xpos="964689920" ypos="562036736" />
+    <Chip Name="Connection Pin" xpos="998244352" ypos="570425344" />
+    <Chip Name="Connection Pin" xpos="989855744" ypos="578813952" />
+    <Chip Name="Connection Pin" xpos="939524096" ypos="562036736" />
+    <Wire chip1="1" pad1="0" chip2="0" pad2="9" />
+    <Wire chip1="2" pad1="0" chip2="1" pad2="0" />
+    <Wire chip1="2" pad1="0" chip2="0" pad2="8" />
+    <Wire chip1="3" pad1="0" chip2="0" pad2="7" />
+    <Wire chip1="4" pad1="0" chip2="3" pad2="0" />
+    <Wire chip1="4" pad1="0" chip2="0" pad2="6" />
+    <Wire chip1="5" pad1="0" chip2="7" pad2="0" />
+    <Wire chip1="7" pad1="0" chip2="4" pad2="0" />
+    <Wire chip1="6" pad1="0" chip2="8" pad2="0" />
+    <Wire chip1="8" pad1="0" chip2="1" pad2="0" />
+    <Wire chip1="0" pad1="1" chip2="9" pad2="0" />
+    <Wire chip1="9" pad1="0" chip2="10" pad2="0" />
+    <Wire chip1="10" pad1="0" chip2="11" pad2="0" />
+    <Wire chip1="11" pad1="0" chip2="12" pad2="0" />
+    <Wire chip1="12" pad1="0" chip2="0" pad2="5" />
+    <Wire chip1="13" pad1="0" chip2="18" pad2="0" />
+    <Wire chip1="14" pad1="6" chip2="17" pad2="0" />
+    <Wire chip1="14" pad1="5" chip2="16" pad2="0" />
+    <Wire chip1="14" pad1="4" chip2="15" pad2="0" />
+    <Wire chip1="9" pad1="0" chip2="14" pad2="7" />
+    <Wire chip1="15" pad1="0" chip2="0" pad2="2" />
+    <Wire chip1="16" pad1="0" chip2="0" pad2="4" />
+    <Wire chip1="17" pad1="0" chip2="0" pad2="3" />
+    <Wire chip1="18" pad1="0" chip2="0" pad2="0" />
+</Atanua>

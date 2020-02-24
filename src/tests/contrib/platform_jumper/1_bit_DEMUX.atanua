@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<Atanua Version="Atanua/Win32 1.2.110613 - LD26 Temp License" ChipCount="10" WireCount="10" key="39609" scale="16">
+    <Chip Name="External Pin" xpos="98304" ypos="1966080" rot="0" key="518408">00FFFFFF0000000145</Chip>
+    <Chip Name="External Pin" xpos="262144" ypos="2523136" rot="0" key="517284">00FFFFFF0000000144</Chip>
+    <Chip Name="External Pin" xpos="983040" ypos="1933312" rot="0" key="466508">00FFFFFF0000000141</Chip>
+    <Chip Name="External Pin" xpos="983040" ypos="2162688" rot="0" key="464057">00FFFFFF0000000142</Chip>
+    <Chip Name="logic AND" xpos="622592" ypos="1900544" rot="0" key="476982" />
+    <Chip Name="logic AND" xpos="622592" ypos="2129920" rot="0" key="490706" />
+    <Chip Name="Connection Pin" xpos="229376" ypos="1900544" rot="0" key="559283" />
+    <Chip Name="logic NOT" xpos="360448" ypos="2162688" rot="0" key="557349" />
+    <Chip Name="Connection Pin" xpos="524288" ypos="1966080" rot="0" key="584056" />
+    <Chip Name="Connection Pin" xpos="229376" ypos="2195456" rot="0" key="529332" />
+    <Wire chip1="5" pad1="2" chip2="3" pad2="0" key="485999" />
+    <Wire chip1="4" pad1="2" chip2="2" pad2="0" key="486647" />
+    <Wire chip1="1" pad1="0" chip2="6" pad2="0" key="561227" />
+    <Wire chip1="6" pad1="0" chip2="4" pad2="0" key="559283" />
+    <Wire chip1="7" pad1="1" chip2="5" pad2="1" key="565280" />
+    <Wire chip1="0" pad1="0" chip2="4" pad2="1" key="587887" />
+    <Wire chip1="5" pad1="0" chip2="8" pad2="0" key="587437" />
+    <Wire chip1="8" pad1="0" chip2="0" pad2="0" key="584056" />
+    <Wire chip1="7" pad1="0" chip2="9" pad2="0" key="532240" />
+    <Wire chip1="9" pad1="0" chip2="1" pad2="0" key="529332" />
+</Atanua>

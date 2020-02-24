@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<Atanua Version="Atanua 0.7.080209 (debug)" ChipCount="11" WireCount="10" key="58543">
+    <Chip Name="LED (red)" xpos="687865856" ypos="67108864" rot="0" key="0" />
+    <Chip Name="LED (green)" xpos="738197504" ypos="75497472" rot="0" key="31" />
+    <Chip Name="button (&apos;1&apos;)" xpos="452984832" ypos="75497472" rot="0" key="31" />
+    <Chip Name="button (&apos;2&apos;)" xpos="452984832" ypos="125829120" rot="0" key="31" />
+    <Chip Name="JK-latch" xpos="562036736" ypos="109051904" rot="0" key="31" />
+    <Chip Name="Connection Pin" xpos="461373440" ypos="109051904" rot="0" key="130873" />
+    <Chip Name="Connection Pin" xpos="461373440" ypos="159383552" rot="0" key="118816" />
+    <Chip Name="Connection Pin" xpos="536870912" ypos="159383552" rot="0" key="108684" />
+    <Chip Name="Connection Pin" xpos="536870912" ypos="125829120" rot="0" key="113854" />
+    <Chip Name="Connection Pin" xpos="738197504" ypos="125829120" rot="0" key="90341" />
+    <Chip Name="Connection Pin" xpos="687865856" ypos="109051904" rot="0" key="95577" />
+    <Wire chip1="4" pad1="0" chip2="5" pad2="0" key="75" />
+    <Wire chip1="4" pad1="1" chip2="8" pad2="0" key="75" />
+    <Wire chip1="4" pad1="3" chip2="9" pad2="0" key="75" />
+    <Wire chip1="0" pad1="0" chip2="10" pad2="0" key="75" />
+    <Wire chip1="5" pad1="0" chip2="2" pad2="0" key="130873" />
+    <Wire chip1="6" pad1="0" chip2="3" pad2="0" key="118816" />
+    <Wire chip1="7" pad1="0" chip2="6" pad2="0" key="108684" />
+    <Wire chip1="8" pad1="0" chip2="7" pad2="0" key="113854" />
+    <Wire chip1="9" pad1="0" chip2="1" pad2="0" key="90341" />
+    <Wire chip1="10" pad1="0" chip2="4" pad2="2" key="95577" />
+</Atanua>
