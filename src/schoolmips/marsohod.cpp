@@ -59,12 +59,13 @@ void ChipMarsohod::update(float aTick)
     // Define state for output pins
     for (int i = 3; i < 14; i++) {
         int mask = (1 << (i-3));
+        int aState = gConfig.mPropagateInvalidState;
 
         if (pinstate == CheckNet::valid) {
-            pin[i].setState((chipImpl->LED & mask) ? PINSTATE_WRITE_HIGH : PINSTATE_WRITE_LOW);
-        } else {
-            pin[i].setState(gConfig.mPropagateInvalidState);
+            aState = (chipImpl->LED & mask) ? PINSTATE_WRITE_HIGH : PINSTATE_WRITE_LOW;
         }
+
+        pin[i].setState(aState);
     }
 }
 
