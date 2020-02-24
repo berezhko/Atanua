@@ -71,7 +71,10 @@ void TristateBuffer::update(float aTick)
         mOutputPin.setState(PINSTATE_WRITE_HIGH);
         break;
     case 0:
-        mOutputPin.setState(PINSTATE_WRITE_LOW);
+        if (mEnablePin.mNet->mState == NETSTATE_HIGH)
+            mOutputPin.setState(PINSTATE_WRITE_LOW);
+        else
+            mOutputPin.setState(PINSTATE_HIGHZ);
         break;
     default:
         mOutputPin.setState(PINSTATE_HIGHZ);
